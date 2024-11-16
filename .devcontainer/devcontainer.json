@@ -1,0 +1,73 @@
+{
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "golang.go",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "rohit-gohri.format-code-action"
+      ],
+      "settings": {
+        "editor.codeActionsOnSave": [
+          "source.organizeImports",
+          "source.formatDocument"
+        ],
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "launch": {
+          "configurations": [
+            {
+              "name": "controller",
+              "type": "go",
+              "args": ["controller"],
+              "cwd": "${workspaceFolder}",
+              "env": {},
+              "mode": "auto",
+              "program": "${workspaceFolder}/cmd/gamekube",
+              "request": "launch"
+            },
+            {
+              "name": "frontend",
+              "type": "node",
+              "cwd": "${workspaceFolder}/frontend",
+              "env": {},
+              "request": "launch",
+              "runtimeArgs": ["run", "dev"],
+              "runtimeExecutable": "yarn"
+            },
+            {
+              "name": "server",
+              "type": "go",
+              "args": ["server"],
+              "cwd": "${workspaceFolder}",
+              "program": "${workspaceFolder}/cmd/gamekube",
+              "mode": "auto",
+              "request": "launch"
+            }
+          ]
+        },
+        "typescript.tsdk": "/workspaces/gamekube/frontend/node_modules/typescript/lib",
+        "[go]": {
+          "editor.defaultFormatter": "golang.go"
+        }
+      }
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/go:1": {
+      "version": "1.22.9"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22.11.0"
+    },
+    "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+      "packages": []
+    }
+  },
+  "image": "ubuntu:latest",
+  "postCreateCommand": ".devcontainer/post-create.sh",
+  "remoteEnv": {
+    "PATH": "/workspaces/gamekube/.dev:${containerEnv:PATH}"
+  }
+}

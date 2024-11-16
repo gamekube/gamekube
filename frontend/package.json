@@ -1,0 +1,26 @@
+{
+  "name": "gamekube",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc -b && vite build"
+  },
+  "devDependencies": {
+    "@nextui-org/react": "^2.4.8",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "framer-motion": "^11.11.17",
+    "globals": "^15.11.0",
+    "postcss": "^8.4.49",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.15",
+    "typescript": "~5.6.2",
+    "vite": "^5.4.10"
+  },
+  "packageManager": "yarn@4.5.1"
+}
