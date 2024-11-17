@@ -1,0 +1,42 @@
+---
+# -- Override the fully qualified name of resources created by this chart
+nameOverride: ""
+
+# -- Define settings for the controller workload
+controller:
+  # --- Specify the address to bind the health endpoints to
+  healthBindAddress: ""
+
+  # --- Specify the logging verbosity
+  logLevel: ""
+
+  # -- Sets the controller pod's resource requests and limits
+  resources: {}
+
+# -- Define settings for the server workload
+server:
+  # --- Specify server ingress
+  ingress:
+    # -- Additional ingress annotations
+    annotations: {}
+
+    # -- Enable an ingress resource for the server
+    enabled: false
+
+    # -- Specify the hostname for the ingress resource
+    hostname: ""
+
+    # -- Specify the ingress class name for the ingress resource
+    ingressClassName: ""
+
+    # -- Specify the root path for the ingress resource
+    path: /
+
+    # -- Specify the ingress path type for the ingress rule
+    pathType: Prefix
+
+  # --- Specify the logging verbosity
+  logLevel: ""
+
+  # -- Sets the server pod's resource requests and limits
+  resources: {}

@@ -15,6 +15,15 @@
         ],
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "launch": {
+          "compounds": [
+            {
+              "name": "all",
+              "configurations": ["controller", "frontend", "server"],
+              "presentation": {
+                "order": 0
+              }
+            }
+          ],
           "configurations": [
             {
               "name": "controller",
@@ -49,6 +58,9 @@
         "typescript.tsdk": "/workspaces/gamekube/frontend/node_modules/typescript/lib",
         "[go]": {
           "editor.defaultFormatter": "golang.go"
+        },
+        "[helm]": {
+          "editor.codeActionsOnSave": []
         }
       }
     }

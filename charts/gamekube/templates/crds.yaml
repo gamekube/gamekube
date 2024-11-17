@@ -1,0 +1,2 @@
+---
+{{- .Files.Get "_crds.yaml" -}}

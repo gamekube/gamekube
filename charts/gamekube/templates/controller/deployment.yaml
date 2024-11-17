@@ -1,0 +1,59 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "gamekube.controller.name" . }}
+  labels:
+    {{- include "gamekube.controller.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "gamekube.controller.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "gamekube.controller.labels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "gamekube.controller.name" . }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65534
+          image: "{{ include "gamekube.image" . }}"
+          imagePullPolicy: IfNotPresent
+          args:
+            - controller
+            {{- if .Values.controller.logLevel }}
+            - --log-level={{ .Values.controller.logLevel }}
+            {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8888
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 5
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8888
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 5
+            successThreshold: 1
+            timeoutSeconds: 5
+          resources:
+            {{- toYaml .Values.controller.resources | nindent 12 }}
+          {{- if .Values.controller.externalSecret }}
+          envFrom:
+            - secretRef:
+                name:  {{ .Values.controller.externalSecret }}
+          {{- end }}

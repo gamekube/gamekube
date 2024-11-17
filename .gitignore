@@ -1,2 +1,22 @@
+# local development assets
 .dev
+
+# ide
 .vscode
+
+# generated files
+charts/gamekube/templates/_crds.yaml
+charts/gamekube/templates/controller/_rbac.yaml
+charts/gamekube/templates/server/_rbac.yaml
+pkg/api/gamekube.dev/v1/zz_generated.deepcopy.go
+
+# frontend
+frontend/.pnp.*
+frontend/.yarn/*
+!frontend/.yarn/patches
+!frontend/.yarn/plugins
+!frontend/.yarn/releases
+!frontend/.yarn/sdks
+!frontend/.yarn/versions
+frontend/node_modules
+frontend/dist

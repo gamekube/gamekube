@@ -1,0 +1,6 @@
+apiVersion: v2
+name: gamekube
+description: Kubernetes-native game server management
+type: application
+version: 0.0.0
+appVersion: "0.0.0"
