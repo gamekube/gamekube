@@ -16,5 +16,5 @@ RUN CGO_ENABLED=0 go build -o gamekube cmd/gamekube/main.go
 
 FROM gcr.io/distroless/static-debian12:nonroot AS final
 WORKDIR /app
-COPY --from=golang_builder /app/gamekube access
-ENTRYPOINT ["access"]
+COPY --from=golang_builder /app/gamekube gamekube
+ENTRYPOINT ["gamekube"]

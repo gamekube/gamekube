@@ -36,24 +36,24 @@ type Opts struct {
 
 // Creates a new [Server] with the given [Opts]
 func New(opts *Opts) (Server, error) {
-	l := opts.Logger
-	if l == nil {
-		l = slog.New(slog.NewTextHandler(io.Discard, nil))
+	logger := opts.Logger
+	if logger == nil {
+		logger = slog.New(slog.NewTextHandler(io.Discard, nil))
 	}
 
-	ba := opts.BindAddress
-	if ba == "" {
-		ba = ":8080"
+	bindAddress := opts.BindAddress
+	if bindAddress == "" {
+		bindAddress = ":8080"
 	}
 
-	e := echo.New()
-	e.HideBanner = true
-	e.HidePort = true
+	echo := echo.New()
+	echo.HideBanner = true
+	echo.HidePort = true
 
-	s := server{
-		bindAddress: ba,
-		echo:        e,
-		logger:      l,
+	server := server{
+		bindAddress: bindAddress,
+		echo:        echo,
+		logger:      logger,
 	}
 
 	staticFs, err := internal.GetStaticFS()
@@ -61,16 +61,16 @@ func New(opts *Opts) (Server, error) {
 		return nil, err
 	}
 
-	e.Use(slogecho.New(l))
-	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
+	echo.Use(slogecho.New(logger))
+	echo.Use(middleware.StaticWithConfig(middleware.StaticConfig{
 		Browse:     true,
 		HTML5:      true,
 		Filesystem: http.FS(staticFs),
 	}))
 
-	e.GET("/healthz", s.health)
+	echo.GET("/healthz", server.health)
 
-	return &s, nil
+	return &server, nil
 }
 
 // Implements a simple health endpoint

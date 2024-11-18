@@ -58,7 +58,7 @@ func main() {
 			&cli.StringFlag{
 				Name:    "log-level",
 				Usage:   "logging verbosity level",
-				EnvVars: []string{"ACCESS_OPERATOR_LOG_LEVEL"},
+				EnvVars: []string{"GAMEKUBE_LOG_LEVEL"},
 			},
 		},
 		Commands: []*cli.Command{
