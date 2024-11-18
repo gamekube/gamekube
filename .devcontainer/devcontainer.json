@@ -5,6 +5,7 @@
         "bradlc.vscode-tailwindcss",
         "esbenp.prettier-vscode",
         "golang.go",
+        "ms-vscode.makefile-tools",
         "ms-kubernetes-tools.vscode-kubernetes-tools",
         "rohit-gohri.format-code-action"
       ],
