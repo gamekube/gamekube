@@ -1,0 +1,3 @@
+.dev
+.env
+charts/gamekube/templates/_crds.yaml
